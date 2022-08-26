@@ -1,0 +1,19 @@
+* {
+    margin: 0px;
+    padding: 0px;
+}
+
+header {
+    display: flex;
+    background-color: rgb(32, 124, 178);
+    justify-content: space-between;
+    padding: 25px;
+}
+
+.links {
+    display: flex;
+    width: 30rem;
+    justify-content: space-around;
+    align-items: center;
+    background-color: rgb(32, 124, 178);
+}
