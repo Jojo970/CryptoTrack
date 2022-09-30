@@ -72,6 +72,7 @@ const CryptoList = (props) => {
             {cryptos.map((crypto) => {
                 const name = crypto.cryptoName
                 return(
+                    // eslint-disable-next-line react/jsx-key
                     <tr>
                         <td>{crypto.cryptoName}</td>
                         <td>{crypto.cryptoQuantity}</td>

@@ -1,3 +1,5 @@
+/*jshint esversion: 6 */
+
 import './App.css';
 import React, {useState} from 'react';
 import axios from 'axios';
@@ -10,7 +12,7 @@ import Login from './components/Login';
 import Register from './components/Register';
 
 function App() {
-  const [loggedIn, setLoggedIn] = useState(false)
+  const [loggedIn, setLoggedIn] = useState(false);
   return (
     <>
       <BrowserRouter>

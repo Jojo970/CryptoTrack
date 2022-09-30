@@ -24,7 +24,7 @@ const register = async (req, res) => {
     }
     };
 
-    const login = async (req, res) => {
+const login = async (req, res) => {
     const userDocument = await User.findOne({ email: req.body.email });
     console.log('USERDOC', userDocument);
     if (!userDocument) {
@@ -52,12 +52,12 @@ const register = async (req, res) => {
     }
     };
 
-    const logout = (req, res) => {
+const logout = (req, res) => {
     res.clearCookie('userToken');
     res.json({ successMessage: 'User logged out' });
     };
 
-    const getLoggedInUser = async (req, res) => {
+const getLoggedInUser = async (req, res) => {
     try {
         const user = jwt.verify(req.cookies.userToken, SECRET);
         const currentUser = await User.findOne({ _id: user._id });
