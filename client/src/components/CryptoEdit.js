@@ -26,7 +26,8 @@ const CryptoEdit = (props) => {
         .then((res) => {
             setCryptoName(res.data.CryptoWatcher.cryptoName);
             setcryptoQuantity(res.data.CryptoWatcher.cryptoQuantity);
-            console.log(res)
+            console.log(res);
+            
         }).catch(err => console.log("Error in getting data",err));
     }, []);
 
@@ -38,7 +39,8 @@ const CryptoEdit = (props) => {
             cryptoQuantity
         }).then(res => {
             console.log(res);
-            console.log(res.data)})
+            console.log(res.data);
+            navigate('/');})
             .catch(err => {console.log("Error on submission", err)});
 
     }
@@ -57,7 +59,7 @@ const CryptoEdit = (props) => {
         </p>
         <p>
             <label>Crypto Amount</label>
-            <input type= 'number' value = {cryptoQuantity} onChange = {(e)=>setcryptoQuantity(e.target.value)}/>
+            <input type= 'number' step= '0.00000001' value = {cryptoQuantity} onChange = {(e)=>setcryptoQuantity(e.target.value)}/>
         </p>
         <button style = {{fontSize: '1.2em'}}>Change the Crytpo</button>
     </form>

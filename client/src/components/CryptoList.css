@@ -1,7 +1,13 @@
+* {
+    margin: 0px;
+    padding: 0px;
+}
+
 .container {
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-direction: column;
     margin: 50px 190px;
     padding: 50px;
     background-color: rgba(23, 121, 218, 0.863);
@@ -9,7 +15,11 @@
 
 .container table{
     border: 1px solid white;
-
+    margin: 15px 30px;
+    
+}
+#reload{
+    font-size: 1.2em;
     
 }
 .container table Link{
@@ -20,7 +30,7 @@
 .container table th{
     border: 1px solid white;
     height: 3rem;
-    width: 11rem;
+    width: fit-content;
     font-size: large;
     padding: 1rem;
 }
@@ -28,14 +38,15 @@
 .container table td{
     border: 1px solid white;
     height: 2rem;
+    width: fit-content;
     align-items: center;
     color: gold;
     font-size: larger;
     padding: 1rem;
 }
 
-.action {
-    height: 20px;
-    width: 100px;
+#action {
+    height: 2em;
+    width: 6em;
     font-size: 0.8em;
 }

@@ -14,8 +14,10 @@ const Navigation = ({loggedIn, setLoggedIn}) => {
     }, [loggedIn]);
 
     const handleLogout = () => {
-        axios.post('http://localhost:8000/api/logout', {}, {withCredentials: true}).then(
-            (res) => {setUser(null);}
+        axios.post('http://localhost:8000/logout', {}, {withCredentials: true}).then(
+            (res) => {
+                setUser(null);
+                setLoggedIn(false)}
         ).catch(err => console.log('Error in logging out', err));
     };
 
@@ -32,18 +34,19 @@ const Navigation = ({loggedIn, setLoggedIn}) => {
                     Home
                 </NavLink>
                 <NavLink to="/add">
-                    Add to Watchlist
+                    Add Crypto
                 </NavLink>
                 {user? (
-                    <div>
-                        <p>Hello: {user.username}</p>
-                        <button onClick={handleLogout}>Logout</button>
+                    <div className='loggedIn'>
+                        <p id='welcome' >Hello: {user.username}</p>
+                        <button id= 'logout' onClick={handleLogout}>Logout</button>
                     </div>
                 ) : (
-                    <div>
+                    <div >
                         <NavLink to = "/login">
                             Login
                         </NavLink>
+                        <span> / </span>
                         <NavLink to = "/register">
                             Register
                         </NavLink>
