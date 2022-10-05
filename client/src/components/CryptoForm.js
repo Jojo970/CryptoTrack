@@ -53,7 +53,7 @@ const CryptoForm = (props) => {
         </p>
         <p>
             <label>Crypto Amount</label>
-            <input type= 'number' onChange = {(e)=>setcryptoQuantity(parseInt(e.target.value))}/>
+            <input type= 'number' step= '0.00000001' onChange = {(e)=>setcryptoQuantity(parseInt(e.target.value))}/>
         </p>
         <button>Add Crypto</button>
     </form>
