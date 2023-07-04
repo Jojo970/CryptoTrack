@@ -19,6 +19,21 @@ React.js (front end)
 Express.js, Node.js (back end)
 MongoDB (Database)
 
+## How to Use
+
+Clone this repository.
+
+Head into the client file and run
+```npm install```
+```npm start```
+
+Open a new terminal and run 
+```npm install```
+```node server.js```
+
+
+
+
 
 ## To Do List
 
@@ -29,4 +44,4 @@ MongoDB (Database)
   
   b. Deploy backend on Heroku.
   
-  c. Deploy DB on MongoDB Atlas. WIP
+  c. Deploy DB on MongoDB Atlas.
