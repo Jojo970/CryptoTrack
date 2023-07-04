@@ -24,11 +24,15 @@ MongoDB (Database)
 Clone this repository.
 
 Head into the client file and run
+
 ```npm install```
+
 ```npm start```
 
 Open a new terminal and run 
+
 ```npm install```
+
 ```node server.js```
 
 
