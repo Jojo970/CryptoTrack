@@ -1,33 +1,33 @@
-/*jshint esversion: 6 */
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { useMemo } from "react";
+import { useSelector } from "react-redux";
+import { CssBaseline, ThemeProvider } from "@mui/material";
+import { createTheme } from "@mui/material";
+import { themeSettings } from "./theme";
 
-import './App.css';
-import React, {useState} from 'react';
-import axios from 'axios';
-import {BrowserRouter, Routes, Route} from 'react-router-dom';
-import CryptoList from './components/CryptoList';
-import CryptoForm from './components/CryptoForm';
-import CryptoEdit from './components/CryptoEdit';
-import Navigation from './components/Navigation';
-import Login from './components/Login';
-import Register from './components/Register';
+import LoginPage from "./scenes/loginPage/Login";
+import Portfolio from "./scenes/portfolio";
+import Edit from "./scenes/edit";
+import Add from "./scenes/add";
 
 function App() {
-  const [loggedIn, setLoggedIn] = useState(false);
+  const mode = useSelector((state) => state.mode);
+  const theme = useMemo(() => createTheme(themeSettings(mode)), [mode]);
+
   return (
-    <>
+    <div className="app">
       <BrowserRouter>
-      <div className='whole'>
-        <Navigation loggedIn ={loggedIn} setLoggedIn={setLoggedIn} />
-        <Routes>
-          <Route path = "/" element = {<CryptoList/>} />
-          <Route path = "/add" element = {<CryptoForm/>} />
-          <Route path = "/edit/:id" element = {<CryptoEdit/>} />
-          <Route path = "/login" element = {<Login setLoggedIn={setLoggedIn}/>} />
-          <Route path = "/register" element = {<Register setLoggedIn={setLoggedIn} />} />
-        </Routes>
-      </div>
+        <ThemeProvider theme={theme}>
+          <CssBaseline />
+          <Routes>
+            <Route path="/" element = {<LoginPage/>} />
+            <Route path="/crypto-by-user/:user" element = {<Portfolio />} />
+            <Route path = "/edit/:user/:id" element = {<Edit />} />
+            <Route path = "/add/:user" element = {<Add />} />
+          </Routes>
+        </ThemeProvider>
       </BrowserRouter>
-    </>
+    </div>
   );
 }
 
