@@ -143,6 +143,8 @@ const EditOrAdd = ({isEdit, user, id }) => {
           <CheckCircleOutlineOutlinedIcon
           color={neutralLight}
           sx = {{
+            margin: "1em", 
+            fontSize: "2rem",
             "&:hover": {
               color:primaryLight,
               cursor: "pointer"
