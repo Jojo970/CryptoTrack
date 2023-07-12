@@ -44,6 +44,8 @@ const Portfolio = () => {
         setTimeout(1200)
     }).catch( err => console.log(err, "Error in reloading Prices"))
 
+    socket.emit('reloadCrypto')
+
 };
 
   const deleteCrypto = (cryptoID) => {
@@ -61,12 +63,15 @@ socket.on('cryptoDeleted', (deletedCrypto) => {
   setCryptoList(cryptoList.filter((crypto) => crypto._id !== deletedCrypto))
 });
 
+socket.on('cryptoReloaded')
+
 
 
   const getUserData = async() => {
     axios.get(`http://localhost:8000/api/crypto-by-user/${user}`, {withCredentials: true})
         .then((res) => {
             setCryptoList(res.data.CryptoWatchers);
+            reloadCrypto()
         }).catch(err => console.log(err));
 
   };
@@ -77,10 +82,6 @@ socket.on('cryptoDeleted', (deletedCrypto) => {
   });
 
     getUserData();
-    if (cryptoList.length > 0) {
-      reloadCrypto();
-    }
-
     return () => socket.disconnect(true);
 
 }, []);

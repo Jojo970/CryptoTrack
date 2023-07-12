@@ -38,5 +38,9 @@ io.on("connection", socket => {
     socket.on("event_from_client", data => {
         socket.broadcast.emit("event", data);
     });
+
+    socket.on('reloadCrypto',(payload)=> {
+        Crypto.updateOne({})
+    })
 });
 

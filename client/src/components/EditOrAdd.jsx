@@ -52,7 +52,7 @@ const EditOrAdd = ({isEdit, user, id }) => {
 
   useEffect(() => {
     if (!isEdit) {
-      axios.get('https://api.coingecko.com/api/v3/coins/list?include_platform=true')
+      axios.get('https://api.coingecko.com/api/v3/coins/list')
         .then((res) => {
             const list = []
             res.data.map((crypto) => list.push(crypto.id))
