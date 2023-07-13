@@ -31,6 +31,7 @@ const Portfolio = () => {
     axios.get('https://api.coingecko.com/api/v3/simple/price?ids=' + listToSend + '&vs_currencies=usd')
     .then((res) => {
         const priceList = res.data
+        console.log(res)
         for(var i = 0; i < cryptoList.length; i++){
             let cryptoPriceToGet = arrayToSend[i]
             let cryptoPrice = priceList[cryptoPriceToGet].usd
@@ -38,13 +39,14 @@ const Portfolio = () => {
             axios.put(`http://localhost:8000/api/cryptowatcher/${cryptoList[i]._id}`, {
                 cryptoPrice
             }).then(res => {
-                console.log(res.data);})
+                console.log(res.data);
+                getUserData()
+              }
+              )
             .catch(err => {console.log("Error on submission", err)});
             }
         setTimeout(1200)
     }).catch( err => console.log(err, "Error in reloading Prices"))
-
-    socket.emit('reloadCrypto')
 
 };
 
@@ -59,22 +61,21 @@ const Portfolio = () => {
     socket.emit('deleteCrypto', cryptoID)
 };
 
+const getUserData = async() => {
+    axios.get(`http://localhost:8000/api/crypto-by-user/${user}`, {withCredentials: true})
+        .then((res) => {
+            setCryptoList(res.data.CryptoWatchers);
+        }).catch(err => console.log(err));
+
+  };
+
+
+
 socket.on('cryptoDeleted', (deletedCrypto) => {
   setCryptoList(cryptoList.filter((crypto) => crypto._id !== deletedCrypto))
 });
 
-socket.on('cryptoReloaded')
 
-
-
-  const getUserData = async() => {
-    axios.get(`http://localhost:8000/api/crypto-by-user/${user}`, {withCredentials: true})
-        .then((res) => {
-            setCryptoList(res.data.CryptoWatchers);
-            reloadCrypto()
-        }).catch(err => console.log(err));
-
-  };
 
   useEffect(() => {
     socket.on('connection', ()=> {
