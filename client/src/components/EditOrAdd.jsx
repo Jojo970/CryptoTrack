@@ -24,7 +24,7 @@ const EditOrAdd = ({isEdit, user, id }) => {
             cryptoName,
             cryptoQuantity
         }).then(res => {
-            navigate(`/crypto-by-user/:${user}`);})
+            navigate(`/crypto-by-user/${user}`);})
             .catch(err => {console.log("Error on submission", err)});
   };
 
@@ -33,7 +33,7 @@ const EditOrAdd = ({isEdit, user, id }) => {
       cryptoName,
       cryptoQuantity
   }, {withCredentials: true}).then(res => {
-      navigate(`/crypto-by-user/:${user}`)})
+      navigate(`/crypto-by-user/${user}`)})
       .catch((err) => {
           console.log(err)
       });

@@ -84,7 +84,6 @@ const Form = () => {
         const loggedIn = await savedUserResponse.json();
 
         onSubmitProps.resetForm();
-        console.log(loggedIn.user);
 
         if (loggedIn) {
             dispatch(

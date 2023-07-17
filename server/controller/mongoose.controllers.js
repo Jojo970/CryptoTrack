@@ -16,11 +16,10 @@ module.exports.findAllCryptoWatchers = (req,res) => {
 module.exports.findByUser = (req,res) => {
     let userN = req.params.username.replace(':', '')
     User.findOne({username : userN}).then((user) => {
-        console.log(user)
-        console.log(req.params, "This is the param")
+        
         CryptoWatcher.find( {createdBy: user._id} ).populate(
             "createdBy", "username email").then((cryptoByUser) => {
-                console.log("cryptos",cryptoByUser)
+                
             res.json({ CryptoWatchers: cryptoByUser})
         }).catch((err) => {
             res.status(400).json({ message:"Something went wrong in finding by user", error: err});

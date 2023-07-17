@@ -8,25 +8,21 @@ const register = async (req, res) => {
     try {
         const user = new User(req.body);
         const newUser = await user.save();
-        console.log('USER CREATED', newUser);
         const userToken = jwt.sign(
         { _id: newUser._id, email: newUser.email, username: newUser.username },
         SECRET,
         );
-        console.log('JWT:', userToken);
         res
         .status(201)
         .cookie('userToken', userToken, { expires: new Date(Date.now() + 900000) })
         .json({ successMessage: 'user created', user: newUser });
     } catch (error) {
-        console.log('Register ERROR', error);
         res.status(400).json(error);
     }
     };
 
 const login = async (req, res) => {
     const userDocument = await User.findOne({ email: req.body.email });
-    console.log('USERDOC', userDocument);
     if (!userDocument) {
         res.status(400).json({ error: 'invalid email/password' });
     } else {
@@ -39,14 +35,12 @@ const login = async (req, res) => {
             { _id: userDocument._id, email: userDocument.email, username: userDocument.username },
             SECRET,
             );
-            console.log('JWT:', userToken);
             res
             .status(201)
             .cookie('userToken', userToken, { expires: new Date(Date.now() + 900000) })
             .json({ successMessage: 'user loggedin', user: userDocument });
         }
         } catch (error) {
-        console.log('LOGIN ERROR', error);
         res.status(400).json({ error: 'invalid email/password' });
         }
     }

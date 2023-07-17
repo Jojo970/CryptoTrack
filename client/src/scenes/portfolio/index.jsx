@@ -35,7 +35,6 @@ const Portfolio = () => {
         for(var i = 0; i < cryptoList.length; i++){
             let cryptoPriceToGet = arrayToSend[i]
             let cryptoPrice = priceList[cryptoPriceToGet].usd
-            console.log(cryptoPrice)
             axios.put(`http://localhost:8000/api/cryptowatcher/${cryptoList[i]._id}`, {
                 cryptoPrice
             }).then(res => {
@@ -55,7 +54,7 @@ const Portfolio = () => {
     .then((res) => {
         const newCryptos = cryptoList.filter( (crypto) => crypto._id !== cryptoID);
         setCryptoList(newCryptos)
-        console.log(res)
+        
     }).catch(err => {console.log(err)});
 
     socket.emit('deleteCrypto', cryptoID)
@@ -81,10 +80,9 @@ socket.on('cryptoDeleted', (deletedCrypto) => {
     socket.on('connection', ()=> {
       console.log('Connected to socket')
   });
-
     getUserData();
     return () => socket.disconnect(true);
-
+// eslint-disable-next-line react-hooks/exhaustive-deps
 }, []);
  
   return (
