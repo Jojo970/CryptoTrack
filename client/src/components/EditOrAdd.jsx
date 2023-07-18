@@ -10,6 +10,7 @@ const EditOrAdd = ({isEdit, user, id }) => {
   const isNonMobile = useMediaQuery("(min-width: 1000px");
   const [cryptoList, setCryptoList] = useState([]);
   const [cryptoName, setCryptoName] = useState('');
+  const [cryptoSymbol, setCryptoSymbol] = useState('');
   const [cryptoQuantity, setcryptoQuantity] = useState(0);
   const navigate = useNavigate();
 
@@ -17,7 +18,6 @@ const EditOrAdd = ({isEdit, user, id }) => {
   const dark = theme.palette.dark;
   const primaryLight = theme.palette.primary.light;
   const neutralLight = theme.palette.neutral.light;
-
 
   const edit = () => {
     axios.put(`http://localhost:8000/api/cryptowatcher/${id}`, {
@@ -28,10 +28,16 @@ const EditOrAdd = ({isEdit, user, id }) => {
             .catch(err => {console.log("Error on submission", err)});
   };
 
-  const add = () => {
+  const add = async () => {
+    const getPrice = await fetch('https://api.coingecko.com/api/v3/simple/price?ids=' + cryptoName + '&vs_currencies=usd', {method: "GET"})
+    const price = await getPrice.json()
+    const cryptoPrice = price[cryptoName].usd
+
     axios.post('http://localhost:8000/api/cryptowatcher', {
       cryptoName,
-      cryptoQuantity
+      cryptoSymbol,
+      cryptoQuantity,
+      cryptoPrice
   }, {withCredentials: true}).then(res => {
       navigate(`/crypto-by-user/${user}`)})
       .catch((err) => {
@@ -54,9 +60,7 @@ const EditOrAdd = ({isEdit, user, id }) => {
     if (!isEdit) {
       axios.get('https://api.coingecko.com/api/v3/coins/list')
         .then((res) => {
-            const list = []
-            res.data.map((crypto) => list.push(crypto.id))
-            setCryptoList(list)
+            setCryptoList(res.data)
         }).catch(err => console.log(err, "error in getting cryptos"))
     } else {
       axios.get(`http://localhost:8000/api/cryptowatcher/${id}`)
@@ -67,7 +71,7 @@ const EditOrAdd = ({isEdit, user, id }) => {
             
         }).catch(err => console.log("Error in getting data",err));
     }
-
+ // eslint-disable-next-line
   },[]);
 
 
@@ -94,7 +98,7 @@ const EditOrAdd = ({isEdit, user, id }) => {
         fontSize="1.5rem"
         color = {dark}
       >
-        Crypto Name
+        Crypto Name/Symbol
       </Typography>
         { isEdit ? (
           <Typography>
@@ -109,10 +113,13 @@ const EditOrAdd = ({isEdit, user, id }) => {
             }}
             label="Crypto Name"
             value= {cryptoName}
-            onChange = {(e) => setCryptoName(e.target.value)}
+            onChange = {(e) => {
+              setCryptoName(e.target.value.id)
+              setCryptoSymbol(e.target.value.symbol)
+            }}
           >
-            {cryptoList.map((name) => {
-              return <MenuItem key ={name} value = {name}>{name}</MenuItem>
+            {cryptoList.map((crypto) => {
+              return <MenuItem key ={crypto.id} value = {crypto}>{crypto.id} - {crypto.symbol.toUpperCase()}</MenuItem>
             })}
           </Select>
         )}

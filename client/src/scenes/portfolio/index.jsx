@@ -114,15 +114,15 @@ socket.on('cryptoDeleted', (deletedCrypto) => {
                     <th style={{
             borderBottom: `1px solid ${palette.grey[600]}`,
             borderSpacing: "2em"
-          }}>Crytpo Name</th>
+          }}>Crypto</th>
                     <th style={{
             borderBottom: `1px solid ${palette.grey[600]}`,
             borderSpacing: "2em"
-          }}>Current Price USD</th>
+          }}>Price</th>
                     <th style={{
             borderBottom: `1px solid ${palette.grey[600]}`,
             borderSpacing: "2em"
-          }}>Owned USD</th>
+          }}>Owned</th>
                     <th style={{
             borderBottom: `1px solid ${palette.grey[600]}`,
             borderSpacing: "2em"
@@ -130,11 +130,15 @@ socket.on('cryptoDeleted', (deletedCrypto) => {
                     
                 </tr>
                 {cryptoList.map((crypto) => {
+                  let price = 0;
+                  if (crypto.cryptoPrice > 0.05){
+                    price = crypto.cryptoPrice.toFixed(2)
+                  } else { price = crypto.cryptoPrice.toFixed(3) }
                     return(
                         // eslint-disable-next-line react/jsx-key
                         <tr key = {crypto.cryptoName}>
-                            <td>{crypto.cryptoName.charAt(0).toUpperCase() + crypto.cryptoName.slice(1)}</td>
-                            <td>$ {crypto.cryptoPrice} </td>
+                            <td>{crypto.cryptoSymbol.toUpperCase()}</td>
+                            <td>$ {price} </td>
                             <td>$ {(crypto.cryptoQuantity * crypto.cryptoPrice).toFixed(2)}</td>
                             <td>
                               <Box
