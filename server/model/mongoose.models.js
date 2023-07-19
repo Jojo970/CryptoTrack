@@ -9,6 +9,13 @@ const CryptoWatcherSchema = new mongoose.Schema(
                 'Coin name is required!'
             ]
         },
+        cryptoSymbol: {
+            type:String,
+            required:[
+                true,
+                'Coin symbol is required!'
+            ]
+        },
         cryptoQuantity: {
             type: Number,
             default: 0,
