@@ -13,7 +13,7 @@ const Edit = () => {
   return (
     <Box>
       <Navbar />
-      <EditOrAdd isEdit={true} user={user} id={id} />
+      <EditOrAdd isEdit={true} user={user} _id={id} />
     </Box>
   )
 }

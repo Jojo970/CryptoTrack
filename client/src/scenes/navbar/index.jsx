@@ -109,6 +109,12 @@ const Navbar = () => {
               <LightMode sx ={{ color: dark, fontSize: '25px' }}/>
             )}
           </IconButton>
+
+          <IconButton onClick={() => {
+                navigate(`/add/${user}`);
+                }}>
+                  <AddCircleOutlineOutlinedIcon />
+                </IconButton>
           
           
               <IconButton onClick={() => {

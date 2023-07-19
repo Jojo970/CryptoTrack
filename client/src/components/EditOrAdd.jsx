@@ -6,7 +6,9 @@ import CheckCircleOutlineOutlinedIcon from '@mui/icons-material/CheckCircleOutli
 
 
 
-const EditOrAdd = ({isEdit, user, id }) => {
+const EditOrAdd = ({isEdit, user, _id }) => {
+  const isEditTab = isEdit;
+  const id = _id;
   const isNonMobile = useMediaQuery("(min-width: 1000px");
   const [cryptoList, setCryptoList] = useState([]);
   const [cryptoName, setCryptoName] = useState('');
@@ -40,7 +42,7 @@ const EditOrAdd = ({isEdit, user, id }) => {
   };
 
   const handleSubmit = async () => {
-    if (isEdit) {
+    if (isEditTab) {
       await edit()
     } else {
       await add()
@@ -49,9 +51,9 @@ const EditOrAdd = ({isEdit, user, id }) => {
 
 
 
-
+  
   useEffect(() => {
-    if (!isEdit) {
+    if (!isEditTab) {
       axios.get('https://api.coingecko.com/api/v3/coins/list')
         .then((res) => {
             const list = []
@@ -68,7 +70,7 @@ const EditOrAdd = ({isEdit, user, id }) => {
         }).catch(err => console.log("Error in getting data",err));
     }
 
-  },[]);
+  },[]);// eslint-disable-line 
 
 
 
@@ -96,7 +98,7 @@ const EditOrAdd = ({isEdit, user, id }) => {
       >
         Crypto Name
       </Typography>
-        { isEdit ? (
+        { isEditTab ? (
           <Typography>
             {cryptoName}
           </Typography>

@@ -13,7 +13,7 @@ const Add = () => {
   return (
     <Box>
       <Navbar />
-      <EditOrAdd isEdit={false} user={user} id={null} />
+      <EditOrAdd isEdit={false} user={user} _id={null} />
     </Box>
   )
 }

@@ -85,7 +85,7 @@ socket.on('cryptoDeleted', (deletedCrypto) => {
     getUserData();
     return () => socket.disconnect(true);
 
-}, []);
+}, []);// eslint-disable-line 
  
   return (
     <Box>
