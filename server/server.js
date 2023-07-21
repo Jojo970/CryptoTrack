@@ -2,6 +2,8 @@
 
 require('./config/mongoose.configs');
 require('dotenv').config();
+
+const path = require("path");
 const express = require('express');
 const cors = require('cors');
 const socket = require('socket.io');
@@ -16,6 +18,13 @@ app.use(cors({credentials:true, origin:"http://localhost:3000"}));
 
 require('./route/mongoose.routes')(app);
 require('./route/user.routes')(app);
+
+app.use(express.static(path.resolve(__dirname, "../client/build")));
+// Step 2:
+app.get("*", function (request, response) {
+  response.sendFile(path.resolve(__dirname, "./client/build", "index.html"));
+});
+
 
 const server = app.listen(port, ()=> {
     console.log(`Listening to port: ${port}`)
