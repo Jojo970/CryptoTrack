@@ -1,4 +1,4 @@
-const CryptoWatcherControllers = require("../server/controller/mongoose.controllers");
+const CryptoWatcherControllers = require("../controller/mongoose.controllers");
 
 module.exports = app => {
     app.get('/api/cryptowatcher',CryptoWatcherControllers.findAllCryptoWatchers);
