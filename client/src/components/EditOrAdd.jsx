@@ -10,7 +10,9 @@ const EditOrAdd = ({isEdit, user, _id }) => {
   const isEditTab = isEdit;
   const id = _id;
   const isNonMobile = useMediaQuery("(min-width: 1000px");
+
   const [cryptoList, setCryptoList] = useState([]);
+  const [cryptoSelect, setCryptoSelect] = useState({})
   const [cryptoName, setCryptoName] = useState('');
   const [cryptoSymbol, setCryptoSymbol] = useState('');
   const [cryptoQuantity, setcryptoQuantity] = useState(0);
@@ -20,6 +22,12 @@ const EditOrAdd = ({isEdit, user, _id }) => {
   const dark = theme.palette.dark;
   const primaryLight = theme.palette.primary.light;
   const neutralLight = theme.palette.neutral.light;
+
+  const filterForSymbol = (str) => {
+    const foundCrypto = cryptoList.find((e) => e.id == str)
+
+    return foundCrypto.symbol.toUpperCase()
+  }
 
   const edit = () => {
     axios.put(`http://localhost:8000/api/cryptowatcher/${id}`, {
@@ -114,14 +122,16 @@ const EditOrAdd = ({isEdit, user, _id }) => {
               width: "25%"
             }}
             label="Crypto Name"
-            value= {cryptoName}
+            defaultValue=""
+            value = {cryptoName} 
             onChange = {(e) => {
-              setCryptoName(e.target.value.id)
-              setCryptoSymbol(e.target.value.symbol)
+              setCryptoName(e.target.value)
+
+              setCryptoSymbol(filterForSymbol(e.target.value))
             }}
           >
             {cryptoList.map((crypto) => {
-              return <MenuItem key ={crypto.id} value = {crypto}>{crypto.id} - {crypto.symbol.toUpperCase()}</MenuItem>
+              return <MenuItem key ={crypto.id} value = {crypto.id}>{crypto.id} - {crypto.symbol.toUpperCase()}</MenuItem>
             })}
           </Select>
         )}
