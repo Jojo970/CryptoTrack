@@ -51,7 +51,7 @@ const Form = () => {
     const register = async (values, onSubmitProps) => {
         let savedUser;
         await fetch(
-            "http://localhost:8000/register",
+            "/register",
             {
                 method: "POST",
                 body: JSON.stringify(values),
@@ -79,7 +79,7 @@ const Form = () => {
 
     const login = async (values, onSubmitProps) => {
         const savedUserResponse = await fetch(
-            "http://localhost:8000/login",
+            "/login",
             {
                 method: "POST",
                 body: JSON.stringify(values),

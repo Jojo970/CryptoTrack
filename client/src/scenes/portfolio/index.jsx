@@ -35,7 +35,7 @@ const Portfolio = () => {
         for(var i = 0; i < cryptoList.length; i++){
             let cryptoPriceToGet = arrayToSend[i]
             let cryptoPrice = priceList[cryptoPriceToGet].usd
-            axios.put(`http://localhost:8000/api/cryptowatcher/${cryptoList[i]._id}`, {
+            axios.put(`/api/cryptowatcher/${cryptoList[i]._id}`, {
                 cryptoPrice
             }).then(res => {
                 console.log(res.data);
@@ -50,7 +50,7 @@ const Portfolio = () => {
 };
 
   const deleteCrypto = (cryptoID) => {
-    axios.delete('http://localhost:8000/api/cryptowatcher/' + cryptoID)
+    axios.delete('/api/cryptowatcher/' + cryptoID)
     .then((res) => {
         const newCryptos = cryptoList.filter( (crypto) => crypto._id !== cryptoID);
         setCryptoList(newCryptos)
@@ -61,7 +61,7 @@ const Portfolio = () => {
 };
 
 const getUserData = async() => {
-    axios.get(`http://localhost:8000/api/crypto-by-user/${user}`, {withCredentials: true})
+    axios.get(`/api/crypto-by-user/${user}`, {withCredentials: true})
         .then((res) => {
             setCryptoList(res.data.CryptoWatchers);
         }).catch(err => console.log(err));

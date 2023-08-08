@@ -23,7 +23,7 @@ const EditOrAdd = ({isEdit, user, _id }) => {
 
 
   const edit = () => {
-    axios.put(`http://localhost:8000/api/cryptowatcher/${id}`, {
+    axios.put(`/api/cryptowatcher/${id}`, {
             cryptoName,
             cryptoQuantity
         }).then(res => {
@@ -36,7 +36,7 @@ const EditOrAdd = ({isEdit, user, _id }) => {
     const price = await getPrice.json()
     const cryptoPrice = price[cryptoName].usd
 
-    axios.post('http://localhost:8000/api/cryptowatcher', {
+    axios.post('/api/cryptowatcher', {
       cryptoName,
       cryptoQuantity,
       cryptoPrice
@@ -65,7 +65,7 @@ const EditOrAdd = ({isEdit, user, _id }) => {
             setCryptoList(res.data)
         }).catch(err => console.log(err, "error in getting cryptos"))
     } else {
-      axios.get(`http://localhost:8000/api/cryptowatcher/${id}`)
+      axios.get(`/api/cryptowatcher/${id}`)
         .then((res) => {
             setCryptoName(res.data.CryptoWatcher.cryptoName);
             setcryptoQuantity(res.data.CryptoWatcher.cryptoQuantity);
