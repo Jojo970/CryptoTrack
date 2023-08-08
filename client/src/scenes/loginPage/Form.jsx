@@ -37,6 +37,8 @@ const initialValuesLogin = {
 
 const Form = () => {
     const [pageType, setPageType] = useState("login");
+    const [error, setError] = useState(false);
+    const [errorType, setErrorType] = useState('');
     const { palette } = useTheme();
     const dispatch = useDispatch();
     const navigate = useNavigate();
@@ -47,8 +49,8 @@ const Form = () => {
     
 
     const register = async (values, onSubmitProps) => {
-
-        const savedUserResponse = await fetch(
+        let savedUser;
+        await fetch(
             "http://localhost:8000/register",
             {
                 method: "POST",
@@ -58,8 +60,15 @@ const Form = () => {
                     "Content-Type": "application/json"
                 },
             }
-        );
-        const savedUser = await savedUserResponse.json();
+        ).then(
+            res => {
+            savedUser = res.json();
+            }
+        ).catch(error => {
+            // do things with the error, like logging them:
+            console.error(error)
+        });
+        
         onSubmitProps.resetForm();
 
 

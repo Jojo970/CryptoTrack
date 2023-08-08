@@ -121,10 +121,13 @@ socket.on('cryptoDeleted', (deletedCrypto) => {
             borderBottom: `1px solid ${palette.grey[600]}`,
             borderSpacing: "2em"
           }}>Price</th>
-                    <th style={{
+           {isNonMobileScreens &&
+           <th style={{
             borderBottom: `1px solid ${palette.grey[600]}`,
             borderSpacing: "2em"
           }}>Owned</th>
+           }
+                    
                     <th style={{
             borderBottom: `1px solid ${palette.grey[600]}`,
             borderSpacing: "2em"
@@ -139,9 +142,11 @@ socket.on('cryptoDeleted', (deletedCrypto) => {
                     return(
                         // eslint-disable-next-line react/jsx-key
                         <tr key = {crypto.cryptoName}>
-                            <td>{crypto.cryptoSymbol.toUpperCase()}</td>
+                            <td>{crypto.cryptoName.toUpperCase()}</td>
                             <td>$ {price} </td>
+                            {isNonMobileScreens && 
                             <td>$ {(crypto.cryptoQuantity * crypto.cryptoPrice).toFixed(2)}</td>
+                            }
                             <td>
                               <Box
         display="flex"

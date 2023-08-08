@@ -12,9 +12,7 @@ const EditOrAdd = ({isEdit, user, _id }) => {
   const isNonMobile = useMediaQuery("(min-width: 1000px");
 
   const [cryptoList, setCryptoList] = useState([]);
-  const [cryptoSelect, setCryptoSelect] = useState({})
   const [cryptoName, setCryptoName] = useState('');
-  const [cryptoSymbol, setCryptoSymbol] = useState('');
   const [cryptoQuantity, setcryptoQuantity] = useState(0);
   const navigate = useNavigate();
 
@@ -23,11 +21,6 @@ const EditOrAdd = ({isEdit, user, _id }) => {
   const primaryLight = theme.palette.primary.light;
   const neutralLight = theme.palette.neutral.light;
 
-  const filterForSymbol = (str) => {
-    const foundCrypto = cryptoList.find((e) => e.id == str)
-
-    return foundCrypto.symbol.toUpperCase()
-  }
 
   const edit = () => {
     axios.put(`http://localhost:8000/api/cryptowatcher/${id}`, {
@@ -45,7 +38,6 @@ const EditOrAdd = ({isEdit, user, _id }) => {
 
     axios.post('http://localhost:8000/api/cryptowatcher', {
       cryptoName,
-      cryptoSymbol,
       cryptoQuantity,
       cryptoPrice
   }, {withCredentials: true}).then(res => {
@@ -81,7 +73,7 @@ const EditOrAdd = ({isEdit, user, _id }) => {
             
         }).catch(err => console.log("Error in getting data",err));
     }
-
+// eslint-disable-next-line
   },[]);
 
 
@@ -123,15 +115,14 @@ const EditOrAdd = ({isEdit, user, _id }) => {
             }}
             label="Crypto Name"
             defaultValue=""
-            value = {cryptoName} 
+            value = {cryptoName}
             onChange = {(e) => {
               setCryptoName(e.target.value)
-
-              setCryptoSymbol(filterForSymbol(e.target.value))
+              
             }}
           >
             {cryptoList.map((crypto) => {
-              return <MenuItem key ={crypto.id} value = {crypto.id}>{crypto.id} - {crypto.symbol.toUpperCase()}</MenuItem>
+              return <MenuItem key ={crypto.id} value = {crypto.id}>{crypto.id}</MenuItem>
             })}
           </Select>
         )}

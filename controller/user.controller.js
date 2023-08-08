@@ -18,6 +18,7 @@ const register = async (req, res) => {
         .json({ successMessage: 'user created', user: newUser });
     } catch (error) {
         res.status(400).json(error);
+        console.log(error)
     }
     };
 

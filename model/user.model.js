@@ -1,11 +1,13 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
+const uniqueValidator = require('mongoose-unique-validator')
 
 const UserSchema = mongoose.Schema(
     {
         username: {
         type: String,
         required: [true, 'username is required'],
+        unique: true
         },
         email: {
         type: String,
@@ -30,5 +32,7 @@ UserSchema.pre('save', async function (next) {
         console.log('ERROR IN SAVE', error);
     }
 });
+
+UserSchema.plugin(uniqueValidator);
 
 module.exports = mongoose.model('User', UserSchema);
