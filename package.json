@@ -30,5 +30,8 @@
   "description": "",
   "devDependencies": {
     "eslint": "^8.23.0"
-  }
+  },
+  "engines": {
+    "node": "18.15.0"
+}
 }
