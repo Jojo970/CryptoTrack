@@ -14,12 +14,15 @@ const cookieParser = require('cookie-parser');
 
 app.use(express.json())
 app.use(cookieParser())
-app.use(cors({credentials:true, origin:"http://localhost:5000"}));
+app.use(cors({credentials:true, origin:'*'}));
+app.use(express.static(path.join(__dirname, "client", "build")))
 
 require('./route/mongoose.routes')(app);
 require('./route/user.routes')(app);
 
-
+app.get("*", (req, res) => {
+    res.sendFile(path.join(__dirname, "client", "build", "index.html"));
+});
 
 const server = app.listen(port, ()=> {
     console.log(`Listening to port: ${port}`)

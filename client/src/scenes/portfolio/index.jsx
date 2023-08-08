@@ -13,7 +13,7 @@ import ReplayOutlinedIcon from '@mui/icons-material/ReplayOutlined';
 const Portfolio = () => {
   const [cryptoList, setCryptoList] = useState([]);
   const { user } = useParams();
-  const [socket] = useState(() => io(':8000'));
+  const [socket] = useState(() => io());
   const navigate = useNavigate();
   const isNonMobileScreens = useMediaQuery("(min-width:1000px)");
   const { palette } = useTheme();
