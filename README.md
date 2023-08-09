@@ -21,6 +21,11 @@ MongoDB (Database)
 
 ## How to Use
 
+Go to this [Link](https://cryptowatch-fd648a9cb2a4.herokuapp.com/).
+
+
+To run to locally - 
+
 Clone this repository.
 
 Head into the client file and run
