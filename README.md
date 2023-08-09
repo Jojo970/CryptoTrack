@@ -15,6 +15,11 @@ Helps with tracking across different exchanges... Since not all exchanges list a
 
 Prices are an average across all exchanges if a crypto is in 2 or more exchanges.
 
+### Picutres
+
+
+
+
 ## Built With
 
 React.js (front end)
