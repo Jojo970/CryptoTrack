@@ -18,7 +18,7 @@ Prices are an average across all exchanges if a crypto is in 2 or more exchanges
 ### Pictures
 
 ![Light Mode](light.png)
-
+![Dark Mode](dark.png)
 
 ## Built With
 
