@@ -1,4 +1,4 @@
-# CryptoTrack
+# Crypto Watcher
 Crypto Price tracking Web App that utilizes CoinGecko API
 Consolidates all cryptocurrencies for easy viewing.
 
