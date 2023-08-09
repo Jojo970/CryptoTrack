@@ -48,15 +48,3 @@ Open a new terminal and run
 
 
 
-
-
-## To Do List
-
-
-1. Launch the APP!! The app currently only works on my local dev server...
-
-  a. Netlify is not deploying the static site... need to figure this out.
-  
-  b. Deploy backend on Heroku.
-  
-  c. Deploy DB on MongoDB Atlas.
