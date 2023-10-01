@@ -1,5 +1,5 @@
 # Crypto Watcher
-Crypto Price tracking Web App that utilizes CoinGecko API
+Crypto Price tracking Web App that
 Consolidates all cryptocurrencies for easy viewing.
 
 ### [Live Website](https://cryptowatch-fd648a9cb2a4.herokuapp.com/)
