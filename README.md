@@ -2,7 +2,6 @@
 Crypto Price tracking Web App that
 Consolidates all cryptocurrencies for easy viewing.
 
-### [Live Website](https://cryptowatch-fd648a9cb2a4.herokuapp.com/)
 
 
 ## About
@@ -27,15 +26,6 @@ Express.js, Node.js (back end)
 MongoDB (Database)
 
 ## How to Use
-
-### Go to this [Link](https://cryptowatch-fd648a9cb2a4.herokuapp.com/).
-
-1. Sign up for an account.
-
-2. Use the toolbar to add new cryptocurrencies to your watchlist.
-
-3. Refresh prices periodically to see an average price among all exchanges.
-
 
 ### To run to locally
 
